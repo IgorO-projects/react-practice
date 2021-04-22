@@ -1,0 +1,17 @@
+.todolist {
+    width: 400px;
+    list-style: none;
+    padding: 0;
+}
+.todolist__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid palevioletred;
+}
+.todolist__text {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 5px;
+}
