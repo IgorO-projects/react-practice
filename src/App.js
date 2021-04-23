@@ -3,9 +3,9 @@ import { Component } from 'react';
 import Container from './components/Container/Container.jsx';
 // import Dropdown from './components/Dropdown/Dropdown.jsx';
 // import ColorPicker from './components/ColorPicker';
-// import TodoList from './components/Todolist';
+import TodoList from './components/Todolist';
 import intitialsTodo from './components/Todolist/initialsTodo.json';
-import Form from './components/Form';
+// import Form from './components/Form';
 
 
 // const colorPickerOptions = [
@@ -29,6 +29,23 @@ class App extends Component {
     }));
   };
 
+  toggleCompleted = todoId => {
+    console.log(todoId);
+
+    this.setState(prevState => ({
+      todos: prevState.todos.map(todo => {
+        if(todo.id === todoId) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        }
+
+        return todo;
+      })
+    }))
+  }
+
   formSubmitHandler = data => {
     setTimeout(()=> {
       console.log(data);
@@ -36,18 +53,18 @@ class App extends Component {
   }
 
   render () {
-    // const { todos } = this.state;
+    const { todos } = this.state;
 
-    // const completedTodos = todos.filter(todo => todo.completed).length;
-    // // const completedTodos = todos.reduce((acc, todo) => {
-    // //   return todo.completed ? acc + 1: acc;
-    // // }, 0);
+    const completedTodos = todos.filter(todo => todo.completed).length;
+    // const completedTodos = todos.reduce((acc, todo) => {
+    //   return todo.completed ? acc + 1: acc;
+    // }, 0);
 
     return (
       <Container>
         {/* <Dropdown /> */}
         {/* <ColorPicker options={colorPickerOptions} /> */}
-        {/* <div style={{
+        <div style={{
           width: '400px',
           marginBottom: '60px',
           padding: '10px',
@@ -55,9 +72,13 @@ class App extends Component {
           }}>
           <p>Общее кол-во: {todos.length}</p>
           <p>Кол-во выполненных: {completedTodos}</p>
-        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
-        </div> */}
-        <Form propOnSobmit={this.formSubmitHandler}/>
+        <TodoList 
+        todos={todos} 
+        onDeleteTodo={this.deleteTodo}
+        onToggleCompleted={this.toggleCompleted}
+        />
+        </div>
+        {/* <Form propOnSobmit={this.formSubmitHandler}/> */}
       </Container>
     );
   }

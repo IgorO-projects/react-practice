@@ -1,6 +1,6 @@
 import './Todolist.css';
 
-const TodoList = ({ todos, onDeleteTodo }) => {
+const TodoList = ({ todos, onDeleteTodo, onToggleCompleted }) => {
 
     return (
     <ul className="todolist">
@@ -8,6 +8,11 @@ const TodoList = ({ todos, onDeleteTodo }) => {
 
         return (
         <li key={id} className="todolist__item">
+            <input 
+            type="checkbox"
+            checked={completed}
+            onChange={()=> onToggleCompleted(id)}
+            />
             <p className="todolist__text">{text}</p>
             <button onClick={()=> onDeleteTodo(id)}>Удалить</button>
             </li>)
