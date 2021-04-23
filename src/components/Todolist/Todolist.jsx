@@ -3,7 +3,8 @@ import './Todolist.css';
 const TodoList = ({ todos, onDeleteTodo }) => {
 
     return (
-    <ul className="todolist">{todos.map(({id, text, completed}) => {
+    <ul className="todolist">
+        {todos.map(({id, text, completed}) => {
 
         return (
         <li key={id} className="todolist__item">
